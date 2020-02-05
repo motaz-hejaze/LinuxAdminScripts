@@ -1,0 +1,43 @@
+print('"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""')
+print('""""""""""""" Developed By Hejaze trapperx.1@gmail.com """"""""""""""""""""""')
+print('"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""')
+print('""""""The Purpose of this script to count open special charchters and """""""')
+print('""""""closing special charachters and see if there is a closing special""""""')
+print('"""""""""""""""""""for each opening special character """""""""""""""""""""""')
+
+
+opening_elements = ['[','{','(']
+closing_elements = [']','}',')']
+def is_balanced2(string):
+	list_of_elements = []
+	opening_counter=0
+	closing_counter=0
+	last_element = ''
+	for i in string:
+		if last_element in opening_elements and i in closing_elements:
+			if opening_elements.index(last_element) != closing_elements.index(i):
+				#print("Opening and closing elemenets are of differenet types!")
+				return False
+		if i in opening_elements:
+			list_of_elements += i
+			opening_counter +=1
+			last_element = i
+		if i in closing_elements:
+			list_of_elements +=i
+			if list_of_elements.index(i) != 0:
+				closing_counter +=1
+				last_element = i
+			else:
+				#print("first element is closing element , not True")
+				return False
+		if last_element in opening_elements and i in closing_elements:
+			if opening_elements.index(last_element) != closing_elements.index(i):
+				#print("Opening and closing elemenets are of differenet types!")
+				return False
+	if opening_counter == closing_counter:
+	    return True
+        
+""" test with different inputs """
+print(is_balanced2("[](){}"))
+print(is_balanced2("][][223"))
+print(is_balanced2("[}"))
